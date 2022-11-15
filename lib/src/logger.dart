@@ -51,6 +51,10 @@ class Logger {
   final LogOutput _output;
   bool _active = true;
 
+  LogOutput get output {
+    return _output;
+  }
+
   /// Create a new instance of Logger.
   ///
   /// You can provide a custom [printer], [filter] and [output]. Otherwise the
