@@ -100,6 +100,7 @@ class Logger {
     log(Level.wtf, message, error, stackTrace);
   }
 
+  Map<Level , int> levelCount = Map<Level , int>();
   /// Log a message with [level].
   void log(Level level, dynamic message,
       [dynamic error, StackTrace? stackTrace]) {
@@ -112,6 +113,9 @@ class Logger {
     }
     var logEvent = LogEvent(level, message, error, stackTrace);
     if (_filter.shouldLog(logEvent)) {
+      var iCount = (levelCount[level]??0) + 1;
+      levelCount[level] = iCount;
+
       var output = _printer.log(logEvent);
 
       if (output.isNotEmpty) {
